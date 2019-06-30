@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "grpc_benchmark";
+
+service Test {
+    rpc BulkStream(stream BulkMessage) returns (google.protobuf.Empty);
+
+    rpc Stream(stream Message) returns (google.protobuf.Empty);
+}
+
+message BulkMessage {
+    repeated Message message = 1;
+}
+
+message Message {
+    bytes bytes = 1;
+}
